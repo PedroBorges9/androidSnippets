@@ -38,5 +38,5 @@ public class AddContact {
             Log.e("LOGTOXML", "Error inserting contact: " + ex.getMessage());
         }
     }
-    
+
 }
