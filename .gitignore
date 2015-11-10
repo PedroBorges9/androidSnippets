@@ -1,0 +1,15 @@
+*.iml
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
+AndroidSnippets/.idea
+proguard-rules.pro
+ApplicationTest.java
+AndroidManifest.xml
+AndroidSnippets/app/src/main/res/mipmap-mdpi
+AndroidSnippets/app/src/main/res
+ExampleUnitTest.java
+gradle-wrapper.jar
+gradle-wrapper.properties
