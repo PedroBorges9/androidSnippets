@@ -64,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-                uninstall();
+                if(currentapiVersion < 23) {
+                    uninstall();
+                }else{
+                    uninstallPackage();
+                }
             }
         });
     }
@@ -121,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_DELETE, Uri.fromParts("package",
                 "com.facebook.mlite",null));
         startActivity(intent);
+    }
+
+    private void uninstallPackage(){
+        String appPackage = "com.facebook.mlite";
+        Intent intent = new Intent(this, this.getClass());
+        PendingIntent sender = PendingIntent.getActivity(this, 0, intent, 0);
+        PackageInstaller mPackageInstaller = this.getPackageManager().getPackageInstaller();
+        mPackageInstaller.uninstall(appPackage, sender.getIntentSender());
     }
 
     // Storage Permissions
