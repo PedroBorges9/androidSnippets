@@ -14,3 +14,4 @@ ExampleUnitTest.java
 gradle-wrapper.jar
 gradle-wrapper.properties
 InstallationAndUninstallation/.idea
+CPUUsage/.idea
