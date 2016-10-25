@@ -24,4 +24,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="157dp"
         android:id="@+id/CPUText" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CPUText"
+        android:layout_alignEnd="@+id/CPUText"
+        android:id="@+id/MEMText" />
 </RelativeLayout>

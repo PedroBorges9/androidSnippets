@@ -1,5 +1,6 @@
 package example.android.one.cpuusage;
 
+import android.app.ActivityManager;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final TextView cpuText = (TextView) findViewById(R.id.CPUText);
+        final TextView memText = (TextView) findViewById(R.id.MEMText);
 
         final Handler handler = new Handler();
 
         final Runnable r = new Runnable() {
             public void run() {
-                cpuText.setText(String.valueOf(readUsage()));
+                cpuText.setText(String.valueOf(readCPUUsage()));
+                readMEMUsage(memText);
                 handler.postDelayed(this, 1000);
             }
         };
@@ -29,9 +32,19 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(r, 1000);
     }
 
+    private void readMEMUsage(TextView memText){
 
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+        long availableMegs = mi.availMem / 1048576L;
+//        totalMegs = mi.totalMem / 1048576L;
+        memText.setText(mi.totalMem / 1048576L + " " + mi.availMem / 1048576L + " " + (mi.totalMem - mi.availMem) * 100 / mi.totalMem);
+//        return (mi.totalMem - mi.availMem) * 100 / mi.totalMem;
 
-    private float readUsage() {
+    }
+
+    private float readCPUUsage() {
         try {
             RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
             String load = reader.readLine();
