@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 Thread.sleep(360);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+
+            }
 
             reader.seek(0);
             load = reader.readLine();
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             long cpu2 = Long.parseLong(toks[2]) + Long.parseLong(toks[3]) + Long.parseLong(toks[5])
                     + Long.parseLong(toks[6]) + Long.parseLong(toks[7]) + Long.parseLong(toks[8]);
 
-            return (float)(cpu2 - cpu1) / ((cpu2 + idle2) - (cpu1 + idle1));
+            return (float)(cpu2 - cpu1) / ((cpu2 + idle2) - (cpu1 + idle1)) * 100;
 
         } catch (IOException ex) {
             ex.printStackTrace();
